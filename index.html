@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>观山悦水晶价格计算器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #2c3e50);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        h1 {
+            color: #6a3093;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .date-info {
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .calculator-section {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #6a3093;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            font-size: 1.4rem;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #8e44ad;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.2);
+        }
+        
+        button {
+            background: linear-gradient(to right, #8e44ad, #6a3093);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .results {
+            margin-top: 25px;
+            background: #f9f9ff;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 4px solid #8e44ad;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1rem;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: #8e44ad;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+        
+        .profit {
+            color: #27ae60;
+        }
+        
+        .loss {
+            color: #e74c3c;
+        }
+        
+        .explanation {
+            background: #e8f4fc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+        
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .calculator-section {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gem"></i> 观山悦水晶价格计算器</h1>
+            <div class="date-info">2026年1月7日 星期三 农历乙巳蛇年十一月十九</div>
+        </header>
+        
+        <section class="calculator-section">
+            <h2 class="section-title"><i class="fas fa-calculator"></i> 预算计算</h2>
+            
+            <div class="input-group">
+                <label for="budget">预算价格 (元):</label>
+                <input type="number" id="budget" placeholder="请输入预算总金额">
+            </div>
+            
+            <button id="calculateBudget">计算预算分配</button>
+            
+            <div class="results" id="budgetResults" style="display: none;">
+                <div class="result-item">开光咨询费: <span id="consultingFee" class="highlight">200</span> 元</div>
+                <div class="result-item">预估邮费: <span id="estimatedPostage" class="highlight">40</span> 元</div>
+                <div class="result-item">水晶价格: <span id="crystalPrice" class="highlight">0</span> 元</div>
+                <div class="result-item">东海抽点: <span id="donghaiFee" class="highlight">0</span> 元</div>
+                <div class="result-item">打工人抽点: <span id="workerFee" class="highlight">0</span> 元</div>
+                <div class="result-item">工作室抽点: <span id="studioFee" class="highlight">0</span> 元</div>
+                <div class="result-item">预估利润: <span id="estimatedProfit" class="highlight">0</span> 元</div>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>计算公式说明:</strong></p>
+                <p>水晶价格 = (预算价格 - 开光咨询费 - 预估邮费) / 1.7</p>
+                <p>东海抽点 = 水晶价格 × 10%</p>
+                <p>打工人抽点 = 水晶价格 × 10%</p>
+                <p>预估利润 = 预算价格 - 水晶价格 - 东海抽点 - 打工人抽点 - 预估邮费</p>
+            </div>
+        </section>
+        
+        <section class="calculator-section">
+            <h2 class="section-title"><i class="fas fa-file-invoice-dollar"></i> 实际结算</h2>
+            
+            <div class="input-group">
+                <label for="actualCharge">客户收费 (元):</label>
+                <input type="number" id="actualCharge" placeholder="实际收取客户金额">
+            </div>
+            
+            <div class="input-group">
+                <label for="actualCrystalPrice">水晶实际价格 (元):</label>
+                <input type="number" id="actualCrystalPrice" placeholder="水晶实际成本">
+            </div>
+            
+            <div class="input-group">
+                <label for="actualPostage">实际邮费 (元):</label>
+                <input type="number" id="actualPostage" placeholder="实际邮寄费用">
+            </div>
+            
+            <button id="calculateActual">计算实际分配</button>
+            
+            <div class="results" id="actualResults" style="display: none;">
+                <div class="result-item">东海收入: <span id="donghaiIncome" class="highlight">0</span> 元</div>
+                <div class="result-item">打工人收入: <span id="workerIncome" class="highlight">0</span> 元</div>
+                <div class="result-item">开光咨询费: <span id="actualConsultingFee" class="highlight">200</span> 元</div>
+                <div class="result-item">工作室收入: <span id="studioIncome" class="highlight">0</span> 元</div>
+                <div class="result-item">实际利润: <span id="actualProfit" class="highlight">0</span> 元</div>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>计算公式说明:</strong></p>
+                <p>东海收入 = 水晶实际价格 × 10%</p>
+                <p>打工人收入 = 水晶实际价格 × 10%</p>
+                <p>实际利润 = 客户收费 - 水晶实际价格 - 实际邮费 - 东海收入 - 打工人收入</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>观山悦水晶价格计算器 &copy; 2026 | 当前时间: 21:22</p>
+    </footer>
+ 
+    <script>
+        document.getElementById('calculateBudget').addEventListener('click', function() {
+            const budget = parseFloat(document.getElementById('budget').value);
+            
+            if (isNaN(budget) || budget <= 0) {
+                alert('请输入有效的预算价格');
+                return;
+            }
+            
+            // 固定费用 
+            const consultingFee = 200;
+            const estimatedPostage = 40;
+            
+            // 计算水晶价格
+            const crystalPrice = (budget - consultingFee - estimatedPostage) / 1.7;
+            
+            // 计算各项抽点
+            const donghaiFee = crystalPrice * 0.1;
+            const workerFee = crystalPrice * 0.1;
+            const studioFee = crystalPrice * 0.5;
+            
+            // 计算预估利润
+            const estimatedProfit = budget - crystalPrice - donghaiFee - workerFee - estimatedPostage;
+            
+            // 更新结果 
+            document.getElementById('crystalPrice').textContent = crystalPrice.toFixed(2);
+            document.getElementById('donghaiFee').textContent = donghaiFee.toFixed(2);
+            document.getElementById('workerFee').textContent = workerFee.toFixed(2);
+            document.getElementById('studioFee').textContent = studioFee.toFixed(2);
+            document.getElementById('estimatedProfit').textContent = estimatedProfit.toFixed(2);
+            
+            // 显示结果区域 
+            document.getElementById('budgetResults').style.display = 'block';
+            
+            // 添加利润颜色
+            document.getElementById('estimatedProfit').className = estimatedProfit >= 0 ? 'highlight profit' : 'highlight loss';
+        });
+        
+        document.getElementById('calculateActual').addEventListener('click', function() {
+            const actualCharge = parseFloat(document.getElementById('actualCharge').value);
+            const actualCrystalPrice = parseFloat(document.getElementById('actualCrystalPrice').value);
+            const actualPostage = parseFloat(document.getElementById('actualPostage').value);
+            
+            if (isNaN(actualCharge) || actualCharge <= 0 || 
+                isNaN(actualCrystalPrice) || actualCrystalPrice <= 0 || 
+                isNaN(actualPostage) || actualPostage < 0) {
+                alert('请输入有效的结算数据');
+                return;
+            }
+            
+            // 固定费用 
+            const consultingFee = 200;
+            
+            // 计算各项收入
+            const donghaiIncome = actualCrystalPrice * 0.1;
+            const workerIncome = actualCrystalPrice * 0.1;
+            const studioIncome = actualCrystalPrice * 0.5;
+            
+            // 计算实际利润
+            const actualProfit = actualCharge - actualCrystalPrice - actualPostage - donghaiIncome - workerIncome;
+            
+            // 更新结果 
+            document.getElementById('donghaiIncome').textContent = donghaiIncome.toFixed(2);
+            document.getElementById('workerIncome').textContent = workerIncome.toFixed(2);
+            document.getElementById('studioIncome').textContent = studioIncome.toFixed(2);
+            document.getElementById('actualProfit').textContent = actualProfit.toFixed(2);
+            
+            // 显示结果区域
+            document.getElementById('actualResults').style.display = 'block';
+            
+            // 添加利润颜色 
+            document.getElementById('actualProfit').className = actualProfit >= 0 ? 'highlight profit' : 'highlight loss';
+        });
+    </script>
+</body>
+</html>
