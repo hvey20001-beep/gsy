@@ -10,402 +10,459 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
-        
+ 
+        :root {
+            --primary-purple: #8a2be2;
+            --light-purple: #b19cd9;
+            --dark-purple: #4b0082;
+            --crystal-pink: #e6c8ff;
+            --crystal-blue: #d0e0ff;
+            --crystal-highlight: #ffccf9;
+            --text-dark: #333;
+            --text-light: #f8f9fa;
+        }
+ 
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0d6e9, #d1c4e9, #b39ddb);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 15px;
+            padding: 20px;
             min-height: 100vh;
+            background-attachment: fixed;
         }
-        
+ 
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
-        
+ 
         header {
             text-align: center;
+            padding: 25px 0;
             margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+            position: relative;
+            overflow: hidden;
         }
-        
+ 
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent 20%, rgba(179, 157, 219, 0.1) 20%, rgba(179, 157, 219, 0.1) 80%, transparent 80%, transparent),
+                        radial-gradient(circle, transparent 20%, rgba(138, 43, 226, 0.1) 20%, rgba(138, 43, 226, 0.1) 80%, transparent 80%, transparent);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            z-index: -1;
+            animation: crystalMove 20s linear infinite;
+        }
+ 
+        @keyframes crystalMove {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+ 
         h1 {
-            color: #fff;
+            color: var(--dark-purple);
             font-size: 2.2rem;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+ 
         .subtitle {
-            color: #e0e0ff;
+            color: var(--primary-purple);
             font-size: 1.1rem;
-            margin-bottom: 15px;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
-        .date-display {
-            background: rgba(0, 0, 0, 0.2);
-            color: #ffcc00;
-            padding: 8px 15px;
-            border-radius: 30px;
-            display: inline-block;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
+ 
         .calculator-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 18px;
             padding: 25px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(138, 43, 226, 0.1);
         }
-        
-        .section-title {
-            color: #5d2e8e;
-            font-size: 1.6rem;
+ 
+        h2 {
+            color: var(--primary-purple);
             margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0d6eb;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--light-purple);
             display: flex;
             align-items: center;
         }
-        
-        .section-title i {
-            margin-right: 10px;
-            color: #7e4caf;
+ 
+        h2 i {
+            margin-right: 12px;
+            background: linear-gradient(45deg, var(--primary-purple), var(--dark-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
+ 
         .input-group {
             margin-bottom: 20px;
         }
-        
+ 
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #444;
+            color: var(--dark-purple);
         }
-        
+ 
         input {
             width: 100%;
             padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            transition: all 0.3s;
+            border: 2px solid var(--light-purple);
+            border-radius: 12px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
         }
-        
+ 
         input:focus {
-            border-color: #7e4caf;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(126, 76, 175, 0.2);
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            background: white;
         }
-        
+ 
         button {
-            background: linear-gradient(to right, #7e4caf, #5d2e8e);
+            background: linear-gradient(45deg, var(--primary-purple), var(--dark-purple));
             color: white;
             border: none;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(126, 76, 175, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
         }
-        
+ 
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(126, 76, 175, 0.4);
+            box-shadow: 0 7px 20px rgba(138, 43, 226, 0.4);
         }
-        
+ 
         button:active {
             transform: translateY(1px);
         }
-        
+ 
         .results {
             margin-top: 25px;
-            background: #f8f5ff;
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid #7e4caf;
+            display: none;
         }
-        
+ 
         .result-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px dashed #e0d6eb;
+            padding: 14px;
+            margin-bottom: 12px;
+            background: rgba(240, 230, 255, 0.5);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-purple);
+            transition: transform 0.3s ease;
         }
-        
-        .result-item:last-child {
-            border-bottom: none;
+ 
+        .result-item:hover {
+            transform: translateX(5px);
         }
-        
-        .highlight {
-            color: #d32f2f;
+ 
+        .result-item.highlight {
+            background: var(--crystal-highlight);
             font-weight: 700;
-            font-size: 1.2rem;
-            background: rgba(255, 235, 238, 0.5);
-            padding: 3px 8px;
-            border-radius: 5px;
+            border-left: 4px solid var(--dark-purple);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2);
         }
-        
-        .profit-highlight {
-            color: #388e3c;
-            font-weight: 700;
-            font-size: 1.2rem;
-            background: rgba(232, 245, 233, 0.5);
-            padding: 3px 8px;
-            border-radius: 5px;
+ 
+        .result-label {
+            font-weight: 600;
         }
-        
-        .explanation {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e3f2fd;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            color: #1565c0;
-            border-left: 4px solid #2196f3;
+ 
+        .result-value {
+            font-weight: 600;
+            color: var(--dark-purple);
         }
-        
+ 
+        .crystal-decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(211, 182, 255, 0.5));
+            clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
+            z-index: 0;
+        }
+ 
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+            transform: rotate(20deg);
+        }
+ 
+        .decoration-2 {
+            top: 15%;
+            right: 7%;
+            width: 30px;
+            height: 30px;
+            animation: float 10s ease-in-out infinite 1s;
+            transform: rotate(-15deg);
+        }
+ 
+        .decoration-3 {
+            bottom: 20%;
+            left: 8%;
+            width: 25px;
+            height: 25px;
+            animation: float 12s ease-in-out infinite 0.5s;
+            transform: rotate(30deg);
+        }
+ 
+        .decoration-4 {
+            bottom: 15%;
+            right: 5%;
+            animation: float 9s ease-in-out infinite 1.5s;
+            transform: rotate(-25deg);
+        }
+ 
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
+ 
         footer {
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
             padding: 20px;
+            color: var(--dark-purple);
             font-size: 0.9rem;
             margin-top: 20px;
         }
-        
-        @media (min-width: 768px) {
-            .calculators-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 25px;
+ 
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
             }
             
             .calculator-section {
-                margin-bottom: 0;
+                padding: 20px 15px;
             }
-        }
-        
-        .note {
-            font-size: 0.85rem;
-            color: #777;
-            margin-top: 5px;
-            font-style: italic;
-        }
-        
-        .formula {
-            background: #fff8e1;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #5d4037;
+            
+            input, button {
+                padding: 12px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="crystal-decoration decoration-1"></div>
+    <div class="crystal-decoration decoration-2"></div>
+    <div class="crystal-decoration decoration-3"></div>
+    <div class="crystal-decoration decoration-4"></div>
+    
     <div class="container">
         <header>
-            <h1><i class="fas fa-gem"></i> 观山悦水晶费用计算器</h1>
-            <p class="subtitle">精准计算水晶业务各项费用与利润</p>
-            <div class="date-display">
-                <i class="fas fa-calendar-alt"></i> 2026年1月7日 星期三 农历乙巳蛇年十一月十九 23:12 
-            </div>
+            <h1>观山悦水晶费用计算器</h1>
+            <p class="subtitle">精准计算水晶相关费用与利润，优化您的经营决策</p>
         </header>
         
-        <div class="calculators-container">
-            <!-- 第一部分：预算计算器 -->
-            <section class="calculator-section">
-                <h2 class="section-title"><i class="fas fa-calculator"></i> 预算规划计算</h2>
-                
-                <div class="input-group">
-                    <label for="budget">客户预算价格 (元)：</label>
-                    <input type="number" id="budget" placeholder="请输入预算金额">
-                    <p class="note">请输入客户的总预算金额</p>
-                </div>
-                
-                <button onclick="calculateBudget()">
-                    <i class="fas fa-calculator"></i> 计算水晶价格与利润 
-                </button>
-                
-                <div class="results" id="budgetResults" style="display:none">
-                    <div class="result-item">
-                        <span>道观开光费：</span>
-                        <span>100 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>观山悦咨询费：</span>
-                        <span>100 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>预估邮费：</span>
-                        <span>40 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>水晶价格：</span>
-                        <span id="crystalPrice" class="highlight">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>东海抽点：</span>
-                        <span id="donghaiCommission">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>打工人抽点：</span>
-                        <span id="workerCommission">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>观山悦计划抽点：</span>
-                        <span id="planCommission">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>观山悦预估利润：</span>
-                        <span id="estimatedProfit">0 元</span>
-                    </div>
-                </div>
-                
-            </section>
+        <section class="calculator-section">
+            <h2><i class="fas fa-calculator"></i> 预算价格计算</h2>
+            <div class="input-group">
+                <label for="budget">预算价格 (元)：</label>
+                <input type="number" id="budget" placeholder="请输入预算总金额">
+            </div>
+            <button onclick="calculateBudget()">计算预算费用</button>
             
-            <!-- 第二部分：实际利润计算器 -->
-            <section class="calculator-section">
-                <h2 class="section-title"><i class="fas fa-chart-line"></i> 实际利润计算</h2>
-                
-                <div class="input-group">
-                    <label for="clientCharge">客户收费 (元)：</label>
-                    <input type="number" id="clientCharge" placeholder="请输入实际收费金额">
-                </div>
-                
-                <div class="input-group">
-                    <label for="actualCrystalPrice">水晶实际价格 (元)：</label>
-                    <input type="number" id="actualCrystalPrice" placeholder="请输入水晶实际价格">
-                </div>
-                
-                <div class="input-group">
-                    <label for="actualShipping">实际邮费 (元)：</label>
-                    <input type="number" id="actualShipping" placeholder="请输入实际邮费">
-                </div>
-                
-                <button onclick="calculateActual()">
-                    <i class="fas fa-coins"></i> 计算实际利润 
-                </button>
-                
-                <div class="results" id="actualResults" style="display:none">
-                    <div class="result-item">
-                        <span>东海收入：</span>
-                        <span id="donghaiIncome">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>打工人收入：</span>
-                        <span id="workerIncome">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>道观开光费：</span>
-                        <span class="highlight">100 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>观山悦咨询费：</span>
-                        <span>100 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>观山悦实际收入：</span>
-                        <span id="actualIncome">0 元</span>
-                    </div>
-                    <div class="result-item">
-                        <span>观山悦实际利润：</span>
-                        <span id="actualProfit" class="profit-highlight">0 元</span>
-                    </div>
-                </div>
-                
-            </section>
-        </div>
+            <div id="budget-results" class="results">
+                <!-- 计算结果将在这里显示 -->
+            </div>
+        </section>
+        
+        <section class="calculator-section">
+            <h2><i class="fas fa-coins"></i> 实际利润计算</h2>
+            <div class="input-group">
+                <label for="actual-charge">客户实际收费 (元)：</label>
+                <input type="number" id="actual-charge" placeholder="客户实际支付金额">
+            </div>
+            <div class="input-group">
+                <label for="crystal-price">水晶实际价格 (元)：</label>
+                <input type="number" id="crystal-price" placeholder="水晶实际成本">
+            </div>
+            <div class="input-group">
+                <label for="actual-shipping">实际邮费 (元)：</label>
+                <input type="number" id="actual-shipping" placeholder="实际产生的邮费">
+            </div>
+            <button onclick="calculateActual()">计算实际利润</button>
+            
+            <div id="actual-results" class="results">
+                <!-- 计算结果将在这里显示 -->
+            </div>
+        </section>
         
         <footer>
-            <p>观山悦水晶业务计算系统 &copy; 2026 | 数据计算仅作参考</p>
-            <p>当前时间：2026年1月7日 23:12</p>
+            <p>观山悦水晶 © 2026 | 精准计算，智慧经营</p>
         </footer>
     </div>
- 
+    
     <script>
-        // 预算计算函数 
         function calculateBudget() {
-            const budget = parseFloat(document.getElementById('budget').value);
+            // 获取预算价格输入
+            const budgetInput = document.getElementById('budget');
+            const budget = parseFloat(budgetInput.value);
             
+            // 验证输入 
             if (isNaN(budget) || budget <= 0) {
-                alert('请输入有效的预算金额');
+                alert('请输入有效的预算价格（大于0的数字）');
                 return;
             }
             
-            // 固定费用 
+            // 固定费用
             const templeFee = 100;
-            const consultationFee = 100;
+            const consultingFee = 100;
             const estimatedShipping = 40;
             
-            // 计算水晶价格 
-            const crystalPrice = (budget - templeFee - consultationFee - estimatedShipping) / 1.7;
+            // 计算水晶价格（有上限）
+            let crystalPrice = (budget - templeFee - consultingFee - estimatedShipping) / 1.7;
+            const maxCrystalPrice = budget / 2;
+            crystalPrice = Math.min(crystalPrice, maxCrystalPrice);
+            
+            // 计算各项抽点 
+            const guanshanyueCommission = crystalPrice * 0.5;
+            const donghaiCommission = crystalPrice * 0.1;
+            const workerCommission = crystalPrice * 0.1;
+            
+            // 计算预估利润
+            const estimatedProfit = budget - crystalPrice - donghaiCommission - workerCommission - estimatedShipping - templeFee;
+            
+            // 显示结果 
+            const resultsDiv = document.getElementById('budget-results');
+            resultsDiv.style.display = 'block';
+            
+            // 创建结果HTML 
+            resultsDiv.innerHTML = `
+                <div class="result-item">
+                    <span class="result-label">道观开光费：</span>
+                    <span class="result-value">${templeFee.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">观山悦咨询费：</span>
+                    <span class="result-value">${consultingFee.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">预估邮费：</span>
+                    <span class="result-value">${estimatedShipping.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">东海抽点：</span>
+                    <span class="result-value">${donghaiCommission.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">打工人抽点：</span>
+                    <span class="result-value">${workerCommission.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item highlight">
+                    <span class="result-label">水晶价格：</span>
+                    <span class="result-value">${crystalPrice.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">观山悦预估利润：</span>
+                    <span class="result-value">${estimatedProfit.toFixed(2)} 元</span>
+                </div>
+            `;
+        }
+        
+        function calculateActual() {
+            // 获取输入值 
+            const actualCharge = parseFloat(document.getElementById('actual-charge').value);
+            const crystalPrice = parseFloat(document.getElementById('crystal-price').value);
+            const actualShipping = parseFloat(document.getElementById('actual-shipping').value);
+            
+            // 验证输入 
+            if (isNaN(actualCharge) || actualCharge <= 0 || 
+                isNaN(crystalPrice) || crystalPrice < 0 || 
+                isNaN(actualShipping) || actualShipping < 0) {
+                alert('请输入有效的数值（大于0的数字）');
+                return;
+            }
+            
+            // 固定费用
+            const templeFee = 100;
+            const consultingFee = 100;
             
             // 计算各项抽点 
             const donghaiCommission = crystalPrice * 0.1;
             const workerCommission = crystalPrice * 0.1;
-            const planCommission = crystalPrice * 0.5;
+            const guanshanyueCommission = crystalPrice * 0.5;
             
-            // 计算预估利润 
-            const estimatedProfit = budget - crystalPrice - donghaiCommission - workerCommission - estimatedShipping - templeFee;
+            // 计算实际利润
+            const actualProfit = actualCharge - crystalPrice - actualShipping - donghaiCommission - workerCommission - templeFee;
             
-            // 更新结果 
-            document.getElementById('crystalPrice').textContent = crystalPrice.toFixed(2) + ' 元';
-            document.getElementById('donghaiCommission').textContent = donghaiCommission.toFixed(2) + ' 元';
-            document.getElementById('workerCommission').textContent = workerCommission.toFixed(2) + ' 元';
-            document.getElementById('planCommission').textContent = planCommission.toFixed(2) + ' 元';
-            document.getElementById('estimatedProfit').textContent = estimatedProfit.toFixed(2) + ' 元';
+            // 显示结果
+            const resultsDiv = document.getElementById('actual-results');
+            resultsDiv.style.display = 'block';
             
-            // 显示结果区域 
-            document.getElementById('budgetResults').style.display = 'block';
-        }
-        
-        // 实际利润计算函数 
-        function calculateActual() {
-            const clientCharge = parseFloat(document.getElementById('clientCharge').value);
-            const actualCrystalPrice = parseFloat(document.getElementById('actualCrystalPrice').value);
-            const actualShipping = parseFloat(document.getElementById('actualShipping').value);
-            
-            if (isNaN(clientCharge) || isNaN(actualCrystalPrice) || isNaN(actualShipping)) {
-                alert('请输入所有有效的数值');
-                return;
-            }
-            
-            // 固定费用 
-            const templeFee = 100;
-            const consultationFee = 100;
-            
-            // 计算各项收入 
-            const donghaiIncome = actualCrystalPrice * 0.1;
-            const workerIncome = actualCrystalPrice * 0.1;
-            const actualIncome = actualCrystalPrice * 0.5;
-            
-            // 计算实际利润 
-            const actualProfit = clientCharge - actualCrystalPrice - actualShipping - donghaiIncome - workerIncome - templeFee;
-            
-            // 更新结果 
-            document.getElementById('donghaiIncome').textContent = donghaiIncome.toFixed(2) + ' 元';
-            document.getElementById('workerIncome').textContent = workerIncome.toFixed(2) + ' 元';
-            document.getElementById('actualIncome').textContent = actualIncome.toFixed(2) + ' 元';
-            document.getElementById('actualProfit').textContent = actualProfit.toFixed(2) + ' 元';
-            
-            // 显示结果区域 
-            document.getElementById('actualResults').style.display = 'block';
+            // 创建结果HTML
+            resultsDiv.innerHTML = `
+                <div class="result-item">
+                    <span class="result-label">客户实际收费：</span>
+                    <span class="result-value">${actualCharge.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">道观开光费：</span>
+                    <span class="result-value">${templeFee.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">观山悦咨询费：</span>
+                    <span class="result-value">${consultingFee.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">实际邮费：</span>
+                    <span class="result-value">${actualShipping.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">水晶实际价格：</span>
+                    <span class="result-value">${crystalPrice.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">东海收入：</span>
+                    <span class="result-value">${donghaiCommission.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">打工人收入：</span>
+                    <span class="result-value">${workerCommission.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">观山悦收入：</span>
+                    <span class="result-value">${guanshanyueCommission.toFixed(2)} 元</span>
+                </div>
+                <div class="result-item highlight">
+                    <span class="result-label">观山悦实际利润：</span>
+                    <span class="result-value">${actualProfit.toFixed(2)} 元</span>
+                </div>
+            `;
         }
     </script>
 </body>
