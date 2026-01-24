@@ -373,10 +373,11 @@
             const cost = parseFloat(document.getElementById('crystal_cost').value);
             if (!cost) return alert("请输入水晶进货价");
 
-            // 公式：水晶价格*2 + 40 + 200
+            // 公式：水晶价格*2 + 50 + 40 + 200
             const quote = (cost * 2) + 50 + 40 + 200;
             
             document.getElementById('r3_quote').innerText = fmt(quote);
+            document.getElementById('res3').style.display = 'block';
         }
 
         // --- 第三部分：实际复盘 ---
