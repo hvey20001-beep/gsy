@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 强制清除缓存配置 -->
+    <!-- 强制清除缓存 Meta 标签 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
@@ -12,22 +12,23 @@
     <title>观山悦水晶费用计算器</title>
     <style>
         :root {
-            /* 紫色水晶主题色 */
-            --bg-gradient: linear-gradient(135deg, #120024 0%, #30005a 50%, #120024 100%);
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.12);
+            /* 紫色水晶风格配色 */
+            --bg-gradient: linear-gradient(135deg, #1a0033 0%, #4a148c 50%, #1a0033 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.15);
             --text-main: #f3e5f5;
-            --text-sub: #d1c4e9;
-            --accent-purple: #9c27b0;
+            --text-secondary: #d1c4e9;
+            --accent-purple: #ab47bc;
             
-            /* 高亮色系 */
-            --highlight-gold: #ffd700;    /* 金色 */
-            --highlight-cyan: #00e5ff;    /* 青色 */
-            --highlight-pink: #ff4081;    /* 粉色 */
+            /* 高亮颜色 */
+            --highlight-gold: #ffd700;   /* 金色 */
+            --highlight-cyan: #00e5ff;   /* 青色 */
+            --highlight-pink: #ff4081;   /* 粉色 */
         }
 
         body {
             margin: 0;
+            padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: var(--bg-gradient);
             color: var(--text-main);
@@ -39,13 +40,13 @@
         /* 顶部导航栏 */
         nav {
             background: rgba(20, 0, 40, 0.95);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 12px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         nav ul {
@@ -59,21 +60,21 @@
 
         nav a {
             text-decoration: none;
-            color: var(--text-sub);
-            font-size: 14px;
+            color: var(--text-secondary);
             font-weight: 600;
             padding: 8px 16px;
             border-radius: 20px;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         nav a.active, nav a:hover {
             background: var(--accent-purple);
             color: #fff;
-            box-shadow: 0 0 15px rgba(156, 39, 176, 0.6);
+            box-shadow: 0 0 15px rgba(171, 71, 188, 0.5);
         }
 
-        /* 主内容区域 */
+        /* 主容器 */
         .container {
             max-width: 600px;
             margin: 20px auto;
@@ -81,15 +82,15 @@
             flex: 1;
         }
 
-        /* 卡片通用样式 */
+        /* 卡片样式 (玻璃拟态) */
         .card {
             background: var(--glass-bg);
             border: var(--glass-border);
             border-radius: 16px;
-            padding: 24px;
+            padding: 20px;
             margin-bottom: 25px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(5px);
         }
 
         h2 {
@@ -97,21 +98,21 @@
             text-align: center;
             font-size: 1.3rem;
             color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 12px;
-            letter-spacing: 1px;
+            padding-bottom: 10px;
         }
 
-        /* 表单元素 */
+        /* 输入框和按钮 */
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-size: 0.9rem;
-            color: var(--text-sub);
+            color: var(--text-secondary);
         }
 
         input[type="number"] {
@@ -119,22 +120,23 @@
             padding: 12px;
             box-sizing: border-box;
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid #6a1b9a;
+            border: 1px solid var(--accent-purple);
             border-radius: 8px;
             color: #fff;
             font-size: 16px;
             outline: none;
-            transition: border-color 0.3s;
+            transition: 0.3s;
         }
 
         input:focus {
             border-color: var(--highlight-cyan);
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
         }
 
         button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #7b1fa2, #ab47bc);
+            background: linear-gradient(45deg, #7b1fa2, #ab47bc);
             color: white;
             border: none;
             border-radius: 8px;
@@ -142,7 +144,7 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.1s;
         }
 
@@ -150,17 +152,17 @@
             transform: scale(0.98);
         }
 
-        /* 结果展示 */
+        /* 结果展示区 */
         .result-box {
-            display: none;
+            display: none; /* 初始隐藏 */
             margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed rgba(255,255,255,0.2);
-            animation: slideDown 0.4s ease-out;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255,255,255,0.3);
+            animation: fadeIn 0.5s;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -173,33 +175,48 @@
         }
 
         .result-row span:last-child {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: monospace; /* 数字等宽字体 */
+            font-size: 1.1rem;
             font-weight: bold;
-            letter-spacing: 0.5px;
         }
 
-        /* 高亮类 */
-        .highlight-gold span:last-child { color: var(--highlight-gold); font-size: 1.1em; }
-        .highlight-cyan span:last-child { color: var(--highlight-cyan); font-size: 1.1em; }
-        .highlight-pink span:last-child { color: var(--highlight-pink); font-size: 1.1em; }
+        /* 高亮样式 */
+        .highlight-gold span:last-child {
+            color: var(--highlight-gold);
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px rgba(255, 235, 59, 0.3);
+        }
 
-        .big-result {
-            font-size: 1.5em;
+        .highlight-cyan span:last-child {
+            color: var(--highlight-cyan);
+            font-size: 1.2rem;
+        }
+
+        .highlight-pink span:last-child {
+            color: var(--highlight-pink);
+            font-size: 1.2rem;
+        }
+        
+        /* 仅用于第二部分的大字报价 */
+        .big-quote {
             text-align: center;
+            font-size: 2rem;
             color: var(--highlight-gold);
             margin: 20px 0;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            font-weight: bold;
         }
 
+        /* 底部特殊提示文字 */
         .final-note {
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(255, 64, 129, 0.1);
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 64, 129, 0.15); /* 粉色背景 */
             border: 1px solid var(--highlight-pink);
             border-radius: 8px;
             color: #ff80ab;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
             text-align: justify;
         }
 
@@ -213,7 +230,7 @@
 </head>
 <body>
 
-    <!-- 1. 导航栏 -->
+    <!-- 导航栏 -->
     <nav>
         <ul>
             <li><a href="index.html" class="active">计算器</a></li>
@@ -224,16 +241,16 @@
 
     <div class="container">
         
-        <!-- 第一部分：预算预估 -->
+        <!-- 第一部分：预算预估计算器 -->
         <div class="card">
-            <h2>🔮 客户预算预估</h2>
+            <h2>🔮 观山悦 · 预算预估</h2>
             <div class="form-group">
-                <label>输入客户预算 (元)</label>
+                <label>输入客户预算价格 (元)</label>
                 <input type="number" id="budget" placeholder="例如：1000">
             </div>
-            <button onclick="calcEstimation()">开始预估</button>
+            <button onclick="calculateEst()">开始预估计算</button>
 
-            <div id="res1" class="result-box">
+            <div id="result1" class="result-box">
                 <div class="result-row"><span>道观开光费</span><span id="r1_kaiguang"></span></div>
                 <div class="result-row"><span>平台咨询费</span><span id="r1_zixun"></span></div>
                 <div class="result-row"><span>预估邮费</span><span id="r1_postage"></span></div>
@@ -246,7 +263,6 @@
                 <div class="result-row"><span>整体预估利润</span><span id="r1_total_profit"></span></div>
                 
                 <div class="result-row highlight-cyan"><span>💰 客户来源预估利润</span><span id="r1_client_profit"></span></div>
-                
                 <div class="result-row"><span>平台预估利润</span><span id="r1_platform_profit"></span></div>
                 <div class="result-row"><span>平台预估总收益</span><span id="r1_platform_total"></span></div>
                 
@@ -256,20 +272,20 @@
             </div>
         </div>
 
-        <!-- 第二部分：水晶报价计算 -->
+        <!-- 第二部分：报价计算器 -->
         <div class="card">
-            <h2>🏷️ 水晶报价生成器</h2>
+            <h2>🏷️ 快速报价生成</h2>
             <div class="form-group">
                 <label>输入水晶进货价 (元)</label>
-                <input type="number" id="crystal_cost" placeholder="例如：300">
+                <input type="number" id="quote_cost" placeholder="例如：300">
             </div>
-            <button onclick="calcQuote()">生成报价</button>
+            <button onclick="calculateQuote()">生成客户报价</button>
 
-            <div id="res3" class="result-box">
-                <div style="text-align: center; color: var(--text-sub); font-size: 0.9rem;">建议给客户报价：</div>
-                <div class="big-result" id="r3_quote"></div>
+            <div id="result3" class="result-box">
+                <div style="text-align: center; color: var(--text-secondary); margin-bottom: 5px;">建议给客户报价：</div>
+                <div class="big-quote" id="r3_quote"></div>
                 <div style="text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.4);">
-                    (公式: 进货价 × 2 + 40邮费 + 200服务费)
+                    (公式: 进货价 × 2 + 50 + 40 + 200)
                 </div>
             </div>
         </div>
@@ -282,16 +298,16 @@
                 <input type="number" id="act_charge">
             </div>
             <div class="form-group">
-                <label>水晶实际价格 (元)</label>
+                <label>水晶实际进货价 (元)</label>
                 <input type="number" id="act_crystal">
             </div>
             <div class="form-group">
                 <label>实际邮费 (元)</label>
                 <input type="number" id="act_postage">
             </div>
-            <button onclick="calcActual()">计算实际利润</button>
+            <button onclick="calculateAct()">计算实际利润</button>
 
-            <div id="res2" class="result-box">
+            <div id="result2" class="result-box">
                 <div class="result-row"><span>客户实际收费</span><span id="r2_charge"></span></div>
                 <div class="result-row"><span>道观开光费</span><span id="r2_kaiguang"></span></div>
                 <div class="result-row"><span>平台咨询费</span><span id="r2_zixun"></span></div>
@@ -300,11 +316,9 @@
                 <div class="result-row"><span>水晶实际价格</span><span id="r2_crystal"></span></div>
                 <div class="result-row"><span>东海抽点</span><span id="r2_donghai"></span></div>
                 <div class="result-row"><span>打工人抽点</span><span id="r2_worker_cut"></span></div>
-                
                 <div class="result-row"><span>整体利润</span><span id="r2_total_profit"></span></div>
                 
                 <div class="result-row highlight-cyan"><span>💰 客户来源利润</span><span id="r2_client_profit"></span></div>
-                
                 <div class="result-row"><span>平台利润</span><span id="r2_platform_profit"></span></div>
                 
                 <div class="result-row highlight-gold"><span>🏆 平台总收益</span><span id="r2_platform_total"></span></div>
@@ -319,36 +333,59 @@
     </footer>
 
     <script>
-        // 格式化货币
-        const fmt = (n) => '¥ ' + n.toFixed(2);
+        // 通用金额格式化函数
+        function fmt(num) {
+            return "¥ " + num.toFixed(2);
+        }
 
-        // --- 第一部分：预算预估 ---
-        function calcEstimation() {
+        // --- 第一部分：预算预估计算 ---
+        function calculateEst() {
             const budget = parseFloat(document.getElementById('budget').value);
-            if (!budget) return alert("请输入预算");
+            if (!budget || budget <= 0) { alert("请输入有效的预算价格"); return; }
 
-            const kaiguang = 100, zixun = 100, postage = 40, car = 50;
+            // 固定费用
+            const kaiguang = 100;
+            const zixun = 100;
+            const postage = 40;
+            const car = 50;
 
-            // 水晶价格计算
+            // 4. 水晶价格 = (预算 - 开光 - 咨询 - 邮费 - 车马) / 2
             let crystal = (budget - kaiguang - zixun - postage - car) / 2;
-            if (crystal > (budget / 2)) crystal = budget / 2;
-            if (crystal < 0) crystal = 0;
+            
+            // 限制：水晶价格最高只到预算的一半
+            if (crystal > (budget / 2)) {
+                crystal = budget / 2;
+            }
+            if (crystal < 0) crystal = 0; // 防止负数
 
+            // 5. 东海抽点 = 水晶 * 0.1
             const donghai = crystal * 0.1;
+
+            // 6. 打工人抽点 = 水晶 * 0.1
             const workerCut = crystal * 0.1;
 
-            // 整体预估利润
+            // 8. 整体预估利润 = 预算 - 各项成本
             const totalProfit = budget - crystal - donghai - workerCut - postage - car - kaiguang - zixun;
 
+            // 9. 打工人利润分成 = 整体利润 * 0.1
             const workerShare = totalProfit * 0.1;
+
+            // 10. 客户来源预估利润 = 整体利润 * 0.4
             const clientProfit = totalProfit * 0.4;
+
+            // 11. 平台预估利润 = 整体利润 * 0.4
             const platformProfit = totalProfit * 0.4;
-            
+
+            // 12. 平台预估总收益 = 平台利润 + 100
             const platformTotal = platformProfit + 100;
+
+            // 13. 打工人预估总收入
             const workerTotal = workerCut + workerShare;
+
+            // 14. 告知客户价格区间
             const tellPrice = (budget - kaiguang - zixun) / 1.1;
 
-            // 渲染
+            // --- 渲染显示 ---
             document.getElementById('r1_kaiguang').innerText = fmt(kaiguang);
             document.getElementById('r1_zixun').innerText = fmt(zixun);
             document.getElementById('r1_postage').innerText = fmt(postage);
@@ -361,49 +398,64 @@
             document.getElementById('r1_platform_profit').innerText = fmt(platformProfit);
             document.getElementById('r1_platform_total').innerText = fmt(platformTotal);
             document.getElementById('r1_worker_total').innerText = fmt(workerTotal);
-            
+
+            // 底部提示文字
             document.getElementById('r1_note').innerText = 
                 `预算除掉100定制费和100的开光费后，会给你找进货价在 ${fmt(tellPrice)} 左右的水晶。东海水晶城供货那边要有10%左右的利润。`;
 
-            document.getElementById('res1').style.display = 'block';
+            document.getElementById('result1').style.display = 'block';
         }
 
-        // --- 第二部分：报价计算 ---
-        function calcQuote() {
-            const cost = parseFloat(document.getElementById('crystal_cost').value);
-            if (!cost) return alert("请输入水晶进货价");
+        // --- 第二部分：报价生成 (仅显示结果) ---
+        function calculateQuote() {
+            const cost = parseFloat(document.getElementById('quote_cost').value);
+            if (!cost || cost <= 0) { alert("请输入有效的水晶进货价"); return; }
 
-            // 公式：水晶价格*2 + 50 + 40 + 200
+            // 公式：水晶价格 * 2 + 50 + 40 + 200
             const quote = (cost * 2) + 50 + 40 + 200;
-            
+
             document.getElementById('r3_quote').innerText = fmt(quote);
-            document.getElementById('res3').style.display = 'block';
+            document.getElementById('result3').style.display = 'block';
         }
 
-        // --- 第三部分：实际复盘 ---
-        function calcActual() {
+        // --- 第三部分：实际利润复盘 ---
+        function calculateAct() {
             const charge = parseFloat(document.getElementById('act_charge').value);
             const crystal = parseFloat(document.getElementById('act_crystal').value);
             const postage = parseFloat(document.getElementById('act_postage').value);
 
-            if (!charge || !crystal || isNaN(postage)) return alert("请输入完整数据");
+            if (!charge || !crystal || isNaN(postage)) { alert("请输入完整数据"); return; }
 
-            const kaiguang = 100, zixun = 100, car = 50;
+            const kaiguang = 100;
+            const zixun = 100;
+            const car = 50;
 
+            // 1. 东海抽点 = 水晶 * 0.1
             const donghai = crystal * 0.1;
+
+            // 2. 打工人抽点 = 水晶 * 0.1
             const workerCut = crystal * 0.1;
 
-            // 整体利润公式
+            // 6. 整体利润
+            // 利润 = 收费 - 水晶 - 邮费 - 东海 - 打工人抽点 - 开光 - 车马 - 咨询
             const totalProfit = charge - crystal - postage - donghai - workerCut - kaiguang - car - zixun;
 
+            // 7. 打工人利润分成 = 整体利润 * 0.1
             const workerShare = totalProfit * 0.1;
+
+            // 8. 客户来源利润 = 整体利润 * 0.4
             const clientProfit = totalProfit * 0.4;
+
+            // 9. 平台利润 = 整体利润 * 0.4
             const platformProfit = totalProfit * 0.4;
 
+            // 10. 打工人总收入
             const workerTotal = workerCut + workerShare;
+
+            // 15. 平台总收益
             const platformTotal = platformProfit + 100;
 
-            // 渲染
+            // --- 渲染显示 ---
             document.getElementById('r2_charge').innerText = fmt(charge);
             document.getElementById('r2_kaiguang').innerText = fmt(kaiguang);
             document.getElementById('r2_zixun').innerText = fmt(zixun);
@@ -418,7 +470,7 @@
             document.getElementById('r2_platform_total').innerText = fmt(platformTotal);
             document.getElementById('r2_worker_total').innerText = fmt(workerTotal);
 
-            document.getElementById('res2').style.display = 'block';
+            document.getElementById('result2').style.display = 'block';
         }
     </script>
 </body>
